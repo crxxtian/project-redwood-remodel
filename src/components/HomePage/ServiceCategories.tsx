@@ -1,26 +1,26 @@
 
 import { Link } from 'react-router-dom';
-import { KitchenPot, ShowerHead, Wrench } from 'lucide-react';
+import { UtensilsCrossed, Bath, Hammer } from 'lucide-react';
 
 const ServiceCategories = () => {
   const services = [
     {
       title: 'Kitchens',
-      icon: <KitchenPot size={40} className="text-redwood-700 mb-4" />,
+      icon: <UtensilsCrossed size={40} className="text-redwood-700 mb-4" />,
       description: 'Custom layouts, soft-close drawers, luxury finishes.',
       link: '/services#kitchens',
       image: '/lovable-uploads/61ab68af-9875-4f04-9df7-02cf040fcafe.png'
     },
     {
       title: 'Bathrooms',
-      icon: <ShowerHead size={40} className="text-redwood-700 mb-4" />,
+      icon: <Bath size={40} className="text-redwood-700 mb-4" />,
       description: 'Vanities, linen towers, space-maximizing storage.',
       link: '/services#bathrooms',
       image: '/lovable-uploads/5bd26de1-4c76-4d1a-b7c4-0ad1dcbac630.png'
     },
     {
       title: 'Custom Projects',
-      icon: <Wrench size={40} className="text-redwood-700 mb-4" />,
+      icon: <Hammer size={40} className="text-redwood-700 mb-4" />,
       description: 'Offices, pantries, bars, built-ins.',
       link: '/services#custom',
       image: '/lovable-uploads/0513e664-0eed-4f8a-82cf-1af659e2572b.png'
