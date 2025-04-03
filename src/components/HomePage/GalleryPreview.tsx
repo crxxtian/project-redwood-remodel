@@ -1,31 +1,38 @@
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const GalleryPreview = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const sliderRef = useRef(null);
   
   const galleryImages = [
     {
-      url: '/lovable-uploads/61ab68af-9875-4f04-9df7-02cf040fcafe.png',
+      url: '/images/gallery-1.jpg',
       alt: 'Modern Kitchen with White Cabinets',
       category: 'Kitchen',
+      description: 'Custom-built white kitchen cabinets with quartz countertops and modern hardware',
     },
     {
-      url: '/lovable-uploads/5bd26de1-4c76-4d1a-b7c4-0ad1dcbac630.png',
+      url: '/images/gallery-2.jpg',
       alt: 'Elegant Bathroom Vanity',
       category: 'Bathroom',
+      description: 'Double vanity with custom mirrors and built-in storage solutions',
     },
     {
-      url: '/lovable-uploads/0513e664-0eed-4f8a-82cf-1af659e2572b.png',
-      alt: 'Custom Built-in Bookshelves',
-      category: 'Custom',
-    },
-    {
-      url: '/lovable-uploads/fa312769-e7b8-4077-b1dc-dbdfd757b340.png',
-      alt: 'Kitchen Island with Custom Storage',
+      url: '/images/gallery-kitchen-1.jpg',
+      alt: 'Open Concept Kitchen',
       category: 'Kitchen',
+      description: 'Open concept kitchen with island and specialized storage solutions',
+    },
+    {
+      url: '/images/gallery-bath-1.jpg',
+      alt: 'Custom Built-in Storage',
+      category: 'Custom',
+      description: 'Wall-to-wall built-in cabinetry with integrated media center',
     },
   ];
 
@@ -40,46 +47,92 @@ const GalleryPreview = () => {
       prevIndex === 0 ? galleryImages.length - 1 : prevIndex - 1
     );
   };
+  
+  // Auto slide effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (hoveredIndex === null) { // Only auto-advance if not hovering
+        nextSlide();
+      }
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [hoveredIndex]);
 
   return (
-    <section className="bg-beige-50 py-20">
+    <section className="py-24 bg-white">
       <div className="redwood-section">
-        <h2 className="section-title text-center mb-6">Recent Projects</h2>
-        <p className="text-center text-charcoal-700 mb-12 max-w-2xl mx-auto">
-          Browse our latest work and get inspired for your next home renovation project.
-          Our portfolio showcases the quality and versatility of our custom cabinetry.
-        </p>
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="text-redwood-700 font-semibold text-lg mb-3 block">Our Portfolio</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-charcoal-900">
+            Recent Projects
+          </h2>
+          <div className="w-24 h-1 bg-redwood-700 mx-auto mb-8"></div>
+          <p className="text-lg text-charcoal-700 leading-relaxed">
+            Browse our latest work and get inspired for your next home renovation project.
+            Our portfolio showcases the quality and versatility of our custom cabinetry.
+          </p>
+        </motion.div>
         
-        <div className="relative max-w-5xl mx-auto">
-          <div className="aspect-w-16 aspect-h-9 mb-8">
-            <div className="relative h-[500px] overflow-hidden rounded-xl shadow-xl">
-              <img
-                src={galleryImages[currentIndex].url}
-                alt={galleryImages[currentIndex].alt}
-                className="object-cover w-full h-full transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
-                <span className="inline-block bg-redwood-700 text-white px-3 py-1 rounded-full text-sm mb-3">
-                  {galleryImages[currentIndex].category}
-                </span>
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
-                  {galleryImages[currentIndex].alt}
-                </h3>
-              </div>
+        <motion.div 
+          className="relative max-w-6xl mx-auto overflow-hidden"
+          ref={sliderRef}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="aspect-w-16 aspect-h-9 mb-10">
+            <div className="relative h-[600px] overflow-hidden rounded-xl shadow-2xl">
+              {galleryImages.map((image, index) => (
+                <motion.div
+                  key={index}
+                  className="absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: index === currentIndex ? 1 : 0,
+                    zIndex: index === currentIndex ? 10 : 0
+                  }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
+                >
+                  <img
+                    src={image.url}
+                    alt={image.alt}
+                    className="object-cover w-full h-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end p-8 md:p-12">
+                    <span className="inline-block bg-redwood-700 text-white px-4 py-1 rounded-full text-sm mb-4 max-w-max">
+                      {image.category}
+                    </span>
+                    <h3 className="text-2xl md:text-4xl font-bold text-white mb-4">
+                      {image.alt}
+                    </h3>
+                    <p className="text-white/90 text-lg max-w-2xl">
+                      {image.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
           
           {/* Navigation buttons */}
           <button 
             onClick={prevSlide}
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 rounded-full p-3 shadow-md hover:bg-white"
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/80 rounded-full p-4 shadow-md hover:bg-white transition-all duration-300 z-20"
             aria-label="Previous image"
           >
             <ChevronLeft size={24} className="text-charcoal-900" />
           </button>
           <button 
             onClick={nextSlide}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80 rounded-full p-3 shadow-md hover:bg-white"
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/80 rounded-full p-4 shadow-md hover:bg-white transition-all duration-300 z-20"
             aria-label="Next image"
           >
             <ChevronRight size={24} className="text-charcoal-900" />
@@ -88,32 +141,45 @@ const GalleryPreview = () => {
           {/* Thumbnails */}
           <div className="grid grid-cols-4 gap-4 mt-4">
             {galleryImages.map((image, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`rounded-lg overflow-hidden border-2 ${
-                  index === currentIndex ? 'border-redwood-700' : 'border-transparent'
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className={`relative rounded-lg overflow-hidden shadow-md transition-all duration-300 ${
+                  index === currentIndex ? 'ring-4 ring-redwood-700' : ''
                 }`}
               >
-                <img
-                  src={image.url}
-                  alt={`Thumbnail for ${image.alt}`}
-                  className="object-cover w-full h-20"
-                />
-              </button>
+                <div className="aspect-w-16 aspect-h-9">
+                  <img
+                    src={image.url}
+                    alt={`Thumbnail for ${image.alt}`}
+                    className="object-cover w-full h-full"
+                  />
+                  <div className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+                    index === currentIndex ? 'opacity-0' : 'opacity-100'
+                  }`}></div>
+                </div>
+              </motion.button>
             ))}
           </div>
           
-          <div className="text-center mt-12">
+          <motion.div 
+            className="text-center mt-12"
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.2 }}
+          >
             <Link
               to="/gallery"
-              className="redwood-btn inline-flex items-center"
+              className="redwood-btn inline-flex items-center bg-redwood-700 text-white shadow-md"
             >
               View Full Gallery
               <ArrowRight size={18} className="ml-2" />
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,15 +1,55 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const mobileMenuVariants = {
+    closed: {
+      opacity: 0,
+      x: '100%',
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      }
+    },
+    open: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.3,
+        ease: 'easeInOut',
+      }
+    }
+  };
 
   return (
-    <header className="sticky top-0 bg-white z-50 shadow-md">
+    <header 
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? 'bg-white shadow-md py-2' : 'bg-white py-4'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
               <img 
@@ -37,6 +77,9 @@ const Header = () => {
             <Link to="/contact" className="text-charcoal-800 hover:text-redwood-700 font-medium transition-colors">
               Contact
             </Link>
+            <Link to="/blog" className="text-charcoal-800 hover:text-redwood-700 font-medium transition-colors">
+              Blog
+            </Link>
           </nav>
           
           <div className="hidden md:flex items-center">
@@ -57,6 +100,7 @@ const Header = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-charcoal-800 hover:text-redwood-700 focus:outline-none"
+              aria-expanded={isOpen}
             >
               <span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -66,64 +110,77 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <Link 
-              to="/" 
-              className="block px-3 py-2 text-base font-medium text-charcoal-800 hover:text-redwood-700"
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/about" 
-              className="block px-3 py-2 text-base font-medium text-charcoal-800 hover:text-redwood-700"
-              onClick={() => setIsOpen(false)}
-            >
-              About
-            </Link>
-            <Link 
-              to="/services" 
-              className="block px-3 py-2 text-base font-medium text-charcoal-800 hover:text-redwood-700"
-              onClick={() => setIsOpen(false)}
-            >
-              Services
-            </Link>
-            <Link 
-              to="/gallery" 
-              className="block px-3 py-2 text-base font-medium text-charcoal-800 hover:text-redwood-700"
-              onClick={() => setIsOpen(false)}
-            >
-              Gallery
-            </Link>
-            <Link 
-              to="/contact" 
-              className="block px-3 py-2 text-base font-medium text-charcoal-800 hover:text-redwood-700"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </Link>
-            <a 
-              href="tel:872-312-7007" 
-              className="block px-3 py-2 text-base font-medium text-redwood-700"
-              onClick={() => setIsOpen(false)}
-            >
-              <div className="flex items-center">
-                <Phone size={16} className="mr-2" />
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div 
+            className="md:hidden fixed top-[60px] right-0 bottom-0 w-3/4 max-w-sm bg-white shadow-lg z-50 overflow-y-auto"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={mobileMenuVariants}
+          >
+            <div className="px-6 pt-6 pb-8 space-y-4">
+              <Link 
+                to="/" 
+                className="block py-3 text-lg font-medium text-charcoal-800 hover:text-redwood-700 border-b border-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                className="block py-3 text-lg font-medium text-charcoal-800 hover:text-redwood-700 border-b border-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                About
+              </Link>
+              <Link 
+                to="/services" 
+                className="block py-3 text-lg font-medium text-charcoal-800 hover:text-redwood-700 border-b border-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                Services
+              </Link>
+              <Link 
+                to="/gallery" 
+                className="block py-3 text-lg font-medium text-charcoal-800 hover:text-redwood-700 border-b border-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                Gallery
+              </Link>
+              <Link 
+                to="/contact" 
+                className="block py-3 text-lg font-medium text-charcoal-800 hover:text-redwood-700 border-b border-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </Link>
+              <Link 
+                to="/blog" 
+                className="block py-3 text-lg font-medium text-charcoal-800 hover:text-redwood-700 border-b border-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                Blog
+              </Link>
+              <a 
+                href="tel:872-312-7007" 
+                className="block py-3 text-lg font-medium text-redwood-700 flex items-center border-b border-gray-100"
+                onClick={() => setIsOpen(false)}
+              >
+                <Phone size={18} className="mr-2" />
                 872-312-7007
-              </div>
-            </a>
-            <Link 
-              to="/contact" 
-              className="block px-3 py-2 mt-4 text-center redwood-btn"
-              onClick={() => setIsOpen(false)}
-            >
-              Quick Estimate
-            </Link>
-          </div>
-        </div>
-      )}
+              </a>
+              <Link 
+                to="/contact" 
+                className="block mt-4 py-3 text-center redwood-btn"
+                onClick={() => setIsOpen(false)}
+              >
+                Request a Free Estimate
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
