@@ -67,7 +67,7 @@ const About = () => {
                 className="relative"
               >
                 <img 
-                  src="/images/team-photo.jpg" 
+                  src="/redwoodlogo.png" 
                   alt="Redwood Cabinets Team" 
                   className="rounded-xl shadow-xl w-full h-auto"
                 />
