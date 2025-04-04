@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
-    <div className="relative h-[90vh] min-h-[600px] overflow-hidden pt-20">
+    <div className="relative overflow-hidden pt-20 pb-24">
       {/* Background Image with Overlay */}
       <div
         className="absolute inset-0 bg-cover bg-center"
