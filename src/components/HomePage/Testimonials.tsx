@@ -13,7 +13,7 @@ const Testimonials = () => {
       location: "Chicago, IL",
       rating: 5,
       text: "Redwood Cabinets transformed our outdated kitchen into a modern, functional space. The team was professional from design to installation. Their attention to detail and quality craftsmanship exceeded our expectations!",
-      image: "/images/testimonial-headshot.jpg",
+      image: "/testimonial-headshot.jpg",
       project: "Kitchen Remodel"
     },
     {
@@ -21,7 +21,7 @@ const Testimonials = () => {
       location: "Oak Park, IL",
       rating: 5,
       text: "We hired Redwood for our bathroom vanities and couldn't be happier. The cabinets are beautiful, solid wood, and the soft-close drawers are a game-changer. Their team was punctual, clean, and respectful of our home.",
-      image: "/images/testimonial-headshot.jpg",
+      image: "/testimonial-headshot2.jpg",
       project: "Bathroom Renovation"
     },
     {
@@ -29,7 +29,7 @@ const Testimonials = () => {
       location: "Naperville, IL",
       rating: 5,
       text: "From the showroom experience to the final installation, Redwood Cabinets provided exceptional service. Our custom kitchen island is stunning and exactly what we wanted. I highly recommend their craftsmanship.",
-      image: "/images/testimonial-headshot.jpg",
+      image: "/testimonial-headshot3.jpg",
       project: "Custom Island"
     },
     {
@@ -37,7 +37,7 @@ const Testimonials = () => {
       location: "Evanston, IL",
       rating: 4,
       text: "Great value for the quality. We got quotes from several companies, and Redwood offered the best combination of price and quality. Our kitchen cabinets look high-end but didn't break the bank.",
-      image: "/images/testimonial-headshot.jpg",
+      image: "/testimonial-headshot4.jpg",
       project: "Full Kitchen"
     }
   ];
@@ -128,7 +128,7 @@ const Testimonials = () => {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.7 }}
                 className="absolute top-0 left-0 w-full"
               >
                 <div className="grid grid-cols-1 md:grid-cols-5 gap-8 bg-white rounded-xl overflow-hidden shadow-xl">

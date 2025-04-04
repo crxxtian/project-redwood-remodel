@@ -54,11 +54,11 @@ const Services = () => {
       ],
       images: [
         {
-          url: '/images/kitchen-cabinetry.jpg',
+          url: '/kitchen-cabinetry2.jpg',
           alt: 'Custom kitchen cabinets with island'
         },
         {
-          url: '/images/gallery-kitchen-1.jpg',
+          url: '/gallery-kitchen-1.jpg',
           alt: 'Modern kitchen with custom storage'
         }
       ]
@@ -80,11 +80,11 @@ const Services = () => {
       ],
       images: [
         {
-          url: '/images/bathroom-vanity.jpg',
+          url: '/bathroom-vanity2.jpg',
           alt: 'Double vanity with custom storage'
         },
         {
-          url: '/images/gallery-bath-1.jpg',
+          url: '/gallery-1.jpg',
           alt: 'Modern bathroom with custom cabinetry'
         }
       ]
@@ -106,11 +106,11 @@ const Services = () => {
       ],
       images: [
         {
-          url: '/images/home-office.jpg',
+          url: '/home-office2.jpg',
           alt: 'Custom built-in home office'
         },
         {
-          url: '/images/gallery-1.jpg',
+          url: '/gallery-bath-1.jpg',
           alt: 'Custom entertainment center'
         }
       ]

@@ -100,13 +100,18 @@ const WhyChooseUs = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="rounded-xl overflow-hidden shadow-2xl">
-            <img 
-              src="/images/gallery-kitchen-1.jpg"
-              alt="Redwood Cabinets Craftsmanship" 
+          <motion.div
+            className="rounded-xl overflow-hidden shadow-2xl"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <img
+              src="/cabinet4.png"
+              alt="Redwood Cabinets Craftsmanship"
               className="w-full h-auto"
             />
-          </div>
+          </motion.div>
           <div className="absolute -bottom-8 -left-8 bg-redwood-700 text-white py-6 px-8 rounded-lg shadow-2xl max-w-xs">
             <p className="text-xl font-bold mb-2">Superior Craftsmanship</p>
             <p className="text-white/90">Built to last for generations with attention to every detail</p>

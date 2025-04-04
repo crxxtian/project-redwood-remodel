@@ -4,27 +4,27 @@ import { UtensilsCrossed, Bath, Hammer } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const ServiceCategories = () => {
-  const services = [
+  const serviceCategoriesData = [
     {
       title: 'Kitchen Cabinets',
       icon: <UtensilsCrossed size={40} className="text-redwood-700" />,
       description: 'Custom layouts, soft-close drawers, high-end finishes. Transform your culinary space with premium cabinetry that combines beauty and functionality.',
       link: '/services#kitchens',
-      image: '/images/kitchen-cabinetry.jpg'
+      image: '/kitchen-cabinetry.jpg'
     },
     {
       title: 'Bathroom Vanities',
       icon: <Bath size={40} className="text-redwood-700" />,
       description: 'Elegant vanities, linen towers, space-maximizing storage. Create a luxurious bathroom retreat with customized cabinetry solutions.',
       link: '/services#bathrooms',
-      image: '/images/bathroom-vanity.jpg'
+      image: '/bathroom-vanity.jpg'
     },
     {
       title: 'Custom Projects',
       icon: <Hammer size={40} className="text-redwood-700" />,
       description: 'Home offices, entertainment centers, built-ins, and more. Maximize your living space with bespoke cabinetry designed for your specific needs.',
       link: '/services#custom',
-      image: '/images/home-office.jpg'
+      image: '/home-office.jpg'
     },
   ];
 
@@ -44,7 +44,7 @@ const ServiceCategories = () => {
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
         ease: "easeOut"
       }
     }
@@ -78,7 +78,7 @@ const ServiceCategories = () => {
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-10"
         >
-          {services.map((service, index) => (
+          {serviceCategoriesData.map((service, index) => (
             <motion.div 
               key={index}
               variants={itemVariants}

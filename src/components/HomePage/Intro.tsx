@@ -9,7 +9,7 @@ const Intro = () => {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-charcoal-900">
           Custom Cabinetry Solutions<br className="hidden md:block" /> for Every Space
@@ -18,14 +18,14 @@ const Intro = () => {
         <div className="w-24 h-1 bg-redwood-700 mx-auto mb-8"></div>
         
         <p className="text-lg text-charcoal-700 leading-relaxed mb-6">
-          At Redwood Cabinets & Design, we create functional, beautiful cabinetry 
+          At Redwood Cabinets Chicago, we create functional, beautiful cabinetry 
           tailored to your lifestyle and space. From complete kitchen remodels to 
           elegant bathroom vanities and custom storage solutions, our expert team 
           delivers craftsmanship that transforms your home.
         </p>
         
         <p className="text-lg text-charcoal-700 leading-relaxed">
-          With over a decade of experience serving the Chicago area, we pride ourselves 
+          With over a decade of experience, we pride ourselves 
           on exceptional quality, personalized service, and attention to detail that 
           ensures each project exceeds expectations.
         </p>

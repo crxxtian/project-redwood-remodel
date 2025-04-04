@@ -12,10 +12,14 @@ const PromoBanner = () => {
       
       <motion.div 
         className="redwood-section relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 20, scale: 1.05 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
+        transition={{
+          duration: 0.7,
+          ease: "easeInOut",
+          scale: { duration: 0.8 }
+        }}
       >
         <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-5">
@@ -71,9 +75,9 @@ const PromoBanner = () => {
             
             <div className="lg:col-span-2 bg-beige-50 hidden lg:block">
               <div className="h-full w-full relative overflow-hidden">
-                <img 
-                  src="/images/kitchen-cabinetry.jpg"
-                  alt="Kitchen Cabinet Sale" 
+                <img
+                  src="/cabinet2.png"
+                  alt="Kitchen Cabinet Sale"
                   className="object-cover h-full w-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-beige-50 to-transparent"></div>

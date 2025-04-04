@@ -11,28 +11,28 @@ const GalleryPreview = () => {
   
   const galleryImages = [
     {
-      url: '/images/gallery-1.jpg',
+      url: '/cabinet1.png',
       alt: 'Modern Kitchen with White Cabinets',
       category: 'Kitchen',
       description: 'Custom-built white kitchen cabinets with quartz countertops and modern hardware',
     },
     {
-      url: '/images/gallery-2.jpg',
+      url: '/bathroom-vanity2.jpg',
       alt: 'Elegant Bathroom Vanity',
       category: 'Bathroom',
       description: 'Double vanity with custom mirrors and built-in storage solutions',
     },
     {
-      url: '/images/gallery-kitchen-1.jpg',
+      url: '/cabinet3.png',
       alt: 'Open Concept Kitchen',
       category: 'Kitchen',
       description: 'Open concept kitchen with island and specialized storage solutions',
     },
     {
-      url: '/images/gallery-bath-1.jpg',
+      url: '/custom2.jpg',
       alt: 'Custom Built-in Storage',
       category: 'Custom',
-      description: 'Wall-to-wall built-in cabinetry with integrated media center',
+      description: 'Wall-to-wall built-in cabinetry with integrated oven space',
     },
   ];
 
@@ -86,7 +86,7 @@ const GalleryPreview = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div className="aspect-w-16 aspect-h-9 mb-10">
             <div className="relative h-[600px] overflow-hidden rounded-xl shadow-2xl">

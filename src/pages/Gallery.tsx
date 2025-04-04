@@ -18,58 +18,58 @@ const Gallery = () => {
     {
       id: 1,
       category: 'kitchen',
-      title: 'Modern White Kitchen',
-      description: 'Custom white shaker cabinets with quartz countertops and built-in wine storage.',
-      image: '/images/gallery-kitchen-1.jpg',
+      title: 'Modern Gray Kitchen',
+      description: 'Custom gray shaker cabinets with quartz countertops and built-in wine storage.',
+      image: '/cabinet2.png',
     },
     {
       id: 2,
       category: 'bathroom',
       title: 'Double Vanity Bathroom',
       description: 'Gray double vanity with undermount sinks and custom mirrors.',
-      image: '/images/gallery-bath-1.jpg',
+      image: '/bathroom-vanity2.jpg',
     },
     {
       id: 3,
       category: 'kitchen',
       title: 'Traditional Kitchen',
       description: 'Cherry wood cabinets with granite countertops and center island.',
-      image: '/images/kitchen-cabinetry.jpg',
+      image: '/cabinet1.png',
     },
     {
       id: 4,
       category: 'custom',
-      title: 'Built-in Office Storage',
-      description: 'Custom built-in office with desk and overhead cabinets.',
-      image: '/images/home-office.jpg',
+      title: 'High-End office',
+      description: 'Custom high-end office.',
+      image: '/home-office.jpg',
     },
     {
       id: 5,
       category: 'bathroom',
-      title: 'Modern Floating Vanity',
-      description: 'Wall-mounted vanity with vessel sink and hidden storage.',
-      image: '/images/bathroom-vanity.jpg',
+      title: 'Modern Quartz Bathroom',
+      description: 'Modern quartz tiling and wooden cabinets.',
+      image: '/bathroom-vanity.jpg',
     },
     {
       id: 6,
       category: 'custom',
-      title: 'Entertainment Center',
-      description: 'Custom entertainment wall with integrated TV mount and display shelving.',
-      image: '/images/gallery-1.jpg',
+      title: 'Kitchen Lockers',
+      description: 'Custom wood kitchen Lockers.',
+      image: '/custom2.jpg',
     },
     {
       id: 7,
       category: 'kitchen',
       title: 'Luxury Kitchen',
       description: 'High-end kitchen with custom island and premium appliances.',
-      image: '/images/gallery-2.jpg',
+      image: '/cabinet4.png',
     },
     {
       id: 8,
       category: 'custom',
       title: 'Wine Storage',
       description: 'Temperature-controlled custom wine cabinet with glass doors.',
-      image: '/images/gallery-1.jpg',
+      image: '/wine.jpg',
     },
   ];
 
@@ -77,7 +77,7 @@ const Gallery = () => {
     ? galleryItems 
     : galleryItems.filter(item => item.category === activeFilter);
     
-  const handleImageClick = (item) => {
+  const handleImageClick = (item: any) => {
     setSelectedImage(item);
     document.body.style.overflow = 'hidden';
   };
@@ -88,7 +88,7 @@ const Gallery = () => {
   };
   
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleEscape = (e: any) => {
       if (e.key === 'Escape') {
         closeLightbox();
       }
